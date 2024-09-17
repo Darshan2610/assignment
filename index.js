@@ -5,11 +5,11 @@ const { Pool } = require("pg");
 
 // PostgreSQL client setup
 const pool = new Pool({
-  user: "postgres",
-  host: "localhost",
-  database: "assign",
-  password: "12345",
-  port: 5432,
+  user: "",
+  host: "",
+  database: "",
+  password: "",
+  port: ,
 });
 
 const app = express();
