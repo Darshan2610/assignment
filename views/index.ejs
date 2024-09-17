@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&display=swap" rel="stylesheet">
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+      integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+      integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+      crossorigin="anonymous"
+    ></script>
+    <title>HodlInfo</title>
+    <style>
+
+      body {
+        font-family: "Oswald", sans-serif;
+        background-color: #191d28;
+        color: #fff;
+        margin: 0;
+        padding: 20px 30px 0;
+      }
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        /* padding: 20px 30px; */
+        background-color: #191d28;
+      }
+      .logo {
+        color: #5dc7c2;
+        font-size: 45px;
+        font-family: "Oswald";
+        
+        
+      }
+      .header-center {
+        display: flex;
+        gap: 10px;
+        
+      }
+      .header-right {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+      .dropdown {
+        background-color: #2e3241;
+        color: #fff;
+        border: none;
+        font-family: inter,sans-serif;
+        padding: 8px 16px;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+      .btn {
+        background-color: #2e3241;
+        color: #fff;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 16px;
+        font-family: "Inter", sans-serif;
+        
+        
+      }
+      
+
+      .telegram-button {
+        background-color: #3dc6c1;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+      .timer {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        border-style: solid;
+        border-color:#3dc6c1;
+        background: transparent;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 14px;
+        color: #3dc6c1;
+      }
+      .switch {
+        position: relative;
+        display: inline-block;
+        width: 50px;
+        height: 24px;
+      }
+      .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: 0.4s;
+        border-radius: 34px;
+      }
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 20px;
+        width: 20px;
+        left: 2px;
+        bottom: 2px;
+        background-color: white;
+        transition: 0.4s;
+        border-radius: 50%;
+      }
+      input:checked + .slider {
+        background-color: #3dc6c1;
+      }
+      input:checked + .slider:before {
+        transform: translateX(26px);
+      }
+      .main-content {
+        text-align: center;
+        margin-top: 40px;
+        margin-bottom: 40px;
+      }
+      .best-price-text {
+        color: #808080;
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+      .price-info {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+      .price-change {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .percentage {
+        color: #5dc7c2;
+        font-size: 28px;
+        font-weight: 400;
+      }
+      .time {
+        color: #808080;
+        font-size: 16px;
+        margin-top: 5px;
+      }
+      .best-price-container {
+        /* flex-grow: 1; */
+        margin: 0 40px;
+        padding: 0%;
+      }
+      .best-price {
+        font-size: 64px;
+        font-weight: 600;
+        color: #ffffff;
+      }
+      .average-text {
+        color: #808080;
+        font-size: 14px;
+      }
+
+      .prices {
+        margin: 10px;
+        align-items: center;
+        justify-content: center;
+        /* background-color: #888; */
+      }
+      table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0 10px;
+        margin-top: 40px;
+      }
+      th {
+        color: #888;
+        font-weight: normal;
+        padding: 15px;
+        text-align: left;
+      }
+      td {
+        background-color: #2e3241;
+        padding: 15px;
+      }
+      tr td:first-child {
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+      }
+      tr td:last-child {
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+      }
+      .platform-icon {
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+        vertical-align: middle;
+      }
+      .negative {
+        color: #da5757;
+      }
+      .positive {
+        color: #5dc7c2;
+      }
+      .add-to-home {
+        background-color: transparent;
+        color: #5dc7c2;
+        border: 1px solid #5dc7c2;
+        padding: 10px 20px;
+        border-radius: 20px;
+        cursor: pointer;
+        display: block;
+        margin: 40px auto;
+        font-size: 16px;
+      }
+
+      /* media query */
+
+      /* Existing styles remain the same */
+
+      /* Update your existing media query and add new styles */
+      @media (max-width: 768px) {
+        .header {
+          flex-direction: column;
+          align-items: center;
+          gap: 20px;
+        }
+        .logo {
+          font-size: 60px; /* Increased size for logo */
+          /* Add some space below the logo */
+        }
+        .header-center,
+        .header-right {
+          width: 100%;
+          justify-content: center;
+          flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+          gap: 10px; /* Reduce gap between items */
+        }
+        .dropdown,
+        .btn {
+          font-size: 14px; /* Smaller font size for buttons and dropdowns */
+          padding: 6px 12px; /* Reduce padding */
+        }
+        .telegram-button {
+          font-size: 14px;
+        }
+        .timer {
+          width: 28px;
+          height: 28px;
+          font-size: 12px;
+        }
+        .switch {
+          width: 40px;
+          height: 20px;
+        }
+        .slider:before {
+          height: 16px;
+          width: 16px;
+        }
+        input:checked + .slider:before {
+          transform: translateX(20px);
+        }
+      }
+
+      /* Add a new media query for even smaller screens if needed */
+      @media (max-width: 480px) {
+        .logo {
+          font-size: 50px;
+        }
+        .header-center,
+        .header-right {
+          /* flex-direction: column; */
+          align-items: center;
+        }
+      }
+
+      @media (max-width: 1024px) {
+        .price-info {
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+        .price-change {
+          width: 20%;
+          margin-bottom: 10px;
+        }
+        .best-price-container {
+          width: 100%;
+          order: -1;
+          margin-bottom: 20px;
+        }
+        .best-price {
+          font-size: 48px;
+        }
+        table {
+          font-size: 14px;
+        }
+        th,
+        td {
+          padding: 10px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .header {
+          flex-direction: column;
+          align-items: center;
+          gap: 20px;
+        }
+        .logo {
+          font-size: 60px;
+        }
+        .header-center,
+        .header-right {
+          width: 100%;
+          justify-content: center;
+          flex-wrap: wrap;
+          gap: 10px;
+        }
+        .dropdown,
+        .btn {
+          font-size: 14px;
+          padding: 6px 12px;
+        }
+        .telegram-button {
+          font-size: 14px;
+        }
+        .timer {
+          width: 28px;
+          height: 28px;
+          font-size: 12px;
+          background-color: transparent;
+        }
+        .switch {
+          width: 40px;
+          height: 20px;
+        }
+        .slider:before {
+          height: 16px;
+          width: 16px;
+        }
+        input:checked + .slider:before {
+          transform: translateX(20px);
+        }
+        .price-change {
+          width: 25%;
+        }
+        .percentage {
+          font-size: 24px;
+        }
+        .time {
+          font-size: 14px;
+        }
+        .best-price {
+          font-size: 40px;
+        }
+        table {
+          font-size: 12px;
+        }
+        th,
+        td {
+          padding: 8px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .logo {
+          font-size: 50px;
+        }
+        .header-center,
+        .header-right {
+          flex-direction: row;
+          align-items: center;
+        }
+        .dropdown,
+        .btn {
+          max-width: 200px;
+        }
+        .price-change {
+          width: 50%;
+        }
+        .best-price {
+          font-size: 32px;
+        }
+        table {
+          font-size: 10px;
+        }
+        th,
+        td {
+          padding: 6px;
+        }
+        .platform-icon {
+          width: 15px;
+          height: 15px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="logo">HODLINFO</div>
+      <div class="header-center">
+        <select class="dropdown">
+          <option>INR</option>
+        </select>
+        <select class="dropdown">
+          <option>BTC</option>
+          <option>ETH</option>
+          <option>USDT</option>
+          <option>XRP</option>
+          <option>TRX</option>
+          <option>DASH</option>
+          <option>ZEC</option>
+          <option>XEM</option>
+          <option>IOST</option>
+          <option>WIN</option>
+          <option>BTT</option>
+          <option>WRX</option>
+        </select>
+        <button class="btn">BUY BTC</button>
+      </div>
+      <div class="header-right">
+        <div class="timer">28</div>
+        <button class="btn telegram-button">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M22.2647 2.42778C21.98 2.19091 21.6364 2.03567 21.2704 1.97858C20.9045 1.92149 20.5299 1.96469 20.1866 2.10357L2.26566 9.33892C1.88241 9.4966 1.55618 9.76711 1.33026 10.1145C1.10434 10.4619 0.989427 10.8699 1.00076 11.2841C1.01209 11.6984 1.14916 12.0994 1.39374 12.4345C1.63832 12.7696 1.97886 13.0232 2.37066 13.1611L6.23066 14.4341L8.53366 20.5901C8.62108 20.8319 8.76566 21.0512 8.95565 21.2315C9.14564 21.4118 9.37593 21.5481 9.62766 21.6301C9.88062 21.7128 10.1503 21.7383 10.4159 21.7047C10.6815 21.6711 10.9359 21.5791 11.1587 21.4361L14.5587 19.2001L18.6127 22.5311C18.9009 22.7747 19.2534 22.9269 19.6255 22.9694C19.9976 23.0119 20.3749 22.9428 20.7106 22.7699C21.0463 22.597 21.3269 22.3272 21.5217 21.9925C21.7165 21.6577 21.8177 21.2726 21.8147 20.8811L21.9967 3.93517C22.0031 3.56163 21.9133 3.19287 21.7361 2.86681C21.559 2.54076 21.3011 2.26973 20.9907 2.07817L22.2647 2.42778ZM9.71066 14.0471L15.4387 9.58517L10.5647 15.4001L9.71066 14.0471Z"
+              fill="white"
+            />
+          </svg>
+          Connect Telegram
+        </button>
+        <label class="switch">
+          <input type="checkbox" checked />
+          <span class="slider"></span>
+        </label>
+      </div>
+    </header>
+
+    <div class="main-content">
+      <div class="best-price-text">Best Price to Trade</div>
+      <div class="price-info">
+        <div class="price-change prices">
+          <div class="percentage">0.1 %</div>
+          <div class="time">5 Mins</div>
+        </div>
+        <div class="price-change prices">
+          <div class="percentage">0.96 %</div>
+          <div class="time">1 Hour</div>
+        </div>
+        <div class="best-price-container prices">
+          <div class="best-price">₹ 26,56,110</div>
+        </div>
+        <div class="price-change prices">
+          <div class="percentage">2.73 %</div>
+          <div class="time">1 Day</div>
+        </div>
+        <div class="price-change prices">
+          <div class="percentage">7.51 %</div>
+          <div class="time">7 Days</div>
+        </div>
+      </div>
+      <div class="average-text">
+        Average BTC/INR net price including commission
+      </div>
+    </div>
+
+    <table>
+      <tr>
+        <th>#</th>
+        <th>Platform</th>
+        <th>Last Traded Price</th>
+        <th>Buy / Sell Price</th>
+        <th>Difference</th>
+        <th>Savings</th>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>
+          <img src="wazirx-icon.png" alt="WazirX" class="platform-icon" />
+          WazirX
+        </td>
+        <td>₹ 25,72,612</td>
+        <td>₹ 25,72,610 / ₹ 25,72,612</td>
+        <td class="negative">-3.14 %</td>
+        <td class="negative">▼ ₹ 83,498</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>
+          <img src="bitbns-icon.png" alt="Bitbns" class="platform-icon" />
+          Bitbns
+        </td>
+        <td>₹ 28,83,906</td>
+        <td>₹ 28,55,164 / ₹ 28,82,157</td>
+        <td class="positive">8.58 %</td>
+        <td class="positive">▲ ₹ 2,27,796</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>
+          <img src="colodax-icon.png" alt="Colodax" class="platform-icon" />
+          Colodax
+        </td>
+        <td>₹ 25,46,035</td>
+        <td>₹ 25,33,304 / ₹ 28,51,559</td>
+        <td class="negative">-4.14 %</td>
+        <td class="negative">▼ ₹ 1,10,074</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>
+          <img src="zebpay-icon.png" alt="Zebpay" class="platform-icon" />
+          Zebpay
+        </td>
+        <td>₹ 26,50,000</td>
+        <td>₹ 26,49,999 / ₹ 26,21,000</td>
+        <td class="negative">-0.23 %</td>
+        <td class="negative">▼ ₹ 6,110</td>
+      </tr>
+    </table>
+
+    <h1 style="margin-top: 40px; margin-bottom: 10px">
+      Top 10 Cryptocurrency Data
+    </h1>
+    <table id="table" style="margin-top: 0">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Last</th>
+          <th>Buy</th>
+          <th>Sell</th>
+          <th>Volume</th>
+          <th>Base Unit</th>
+        </tr>
+      </thead>
+      <br />
+      <tbody>
+        <% tickers.forEach(ticker => { %>
+        <tr>
+          <td><%= ticker.name %></td>
+          <td><%= ticker.last %></td>
+          <td><%= ticker.buy %></td>
+          <td><%= ticker.sell %></td>
+          <td><%= ticker.volume %></td>
+          <td><%= ticker.base_unit %></td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+
+
+    <div style=" display: flex; flex-direction: column;">
+  <!-- Your existing content goes here -->
+  <div style="flex-grow: 1;"></div>
+  
+  <button style="background-color: transparent; color: #5dc7c2; border: 1px solid #5dc7c2; padding: 10px 20px; border-radius: 20px; cursor: pointer; font-size: 16px; margin: 20px auto; display: block; font-family: 'Inter', sans-serif;">
+    Add hodlinfo to home screen
+  </button>
+  
+  <footer style="background-color: #191d28; padding: 15px 0; font-family: 'Inter', sans-serif;">
+    <div style="display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 20px; color: #808080; font-size: 14px;">
+      <span style="color: #808080;">Copyright © 2019 Hodlinfo.com</span>
+      <span style="color: #808080;">Support</span>
+    </div>
+  </footer>
+</div>
+
+    
+  </body>
+</html>
